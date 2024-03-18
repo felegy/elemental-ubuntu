@@ -131,7 +131,7 @@ total 943M
 
 ### Booting ISO
 
-In the step above, your ISO file is a bootable UEFI iso image, ideal for a virtual machine (or any) installation scenarios.
+In the step above your ISO file is a bootable UEFI iso image, ideal for a virtual machine (or any) installation purpose.
 
 Grub:
 
