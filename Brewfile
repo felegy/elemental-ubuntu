@@ -1,0 +1,8 @@
+tap "homebrew/bundle"
+brew "editorconfig-checker"
+brew "shellcheck"
+brew "direnv"
+#brew "qemu"
+brew "yq"
+brew "jq"
+vscode "Command is only available in WSL or inside a Visual Studio Code terminal."
