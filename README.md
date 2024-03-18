@@ -119,7 +119,7 @@ ISO image produced: 482497 sectors
 Written to medium : 482512 sectors at LBA 48
 Writing to '/build/elemental-ubuntu.x86_64.iso' completed successfully.
 ```
-When a successful ISO build has finished, you have an bootable iso like this:
+When a successful ISO build has finished, you have a bootable iso like this:
 
 ```console
 ls -lh build 
