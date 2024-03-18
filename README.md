@@ -30,7 +30,7 @@ And now run devcontainer, click on `[Reopen in Container]` button.
 
 ### Install Brew dependencies
 
-The repo it contains Brewfile for a better tooling installation.
+The repo contains a Brewfile for easier tooling installation.
 
 ```console
 $ brew bundle install
