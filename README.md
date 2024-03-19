@@ -1,6 +1,6 @@
 # elemental-ubuntu
 
-Ubuntu os derivative build via Rancher's [elemental-toolkit](https://github.com/rancher/elemental-toolkit)
+Ubuntu os derivative build via Rancher [elemental-toolkit](https://github.com/rancher/elemental-toolkit)
 
 ## Getting Started
 
@@ -11,7 +11,9 @@ Getting started with Elemental
 
 ### Prerequisite
 
-All dependencies in a DevContainer (`.devcontainer`) for devconatiner needed docker too be installed on system and [vscode](https://code.visualstudio.com/docs/devcontainers/containers) latest or any develper IDE with devcontainers support: <https://www.augmentedmind.de/2022/10/30/container-based-development-envs/>
+All dependencies and tooling are in a DevContainer (`./.devcontainer` directory). 
+- docker is required,
+- [vscode](https://code.visualstudio.com/docs/devcontainers/containers) or any developer IDE with [devcontainer support](https://www.augmentedmind.de/2022/10/30/container-based-development-envs) is also needed.
 
 ### Open repo (`[Reopen in Container]`)
 
@@ -33,6 +35,9 @@ $ code .
 ```
 
 And now run devcontainer, click on `[Reopen in Container]` button.
+
+![Screenshot from 2024-03-19 11-47-55](https://github.com/felegy/elemental-ubuntu/assets/1136546/ff9874ce-9621-49ae-bdfb-322e9fc1a840)
+
 
 ### Install Brew dependencies
 
@@ -57,16 +62,17 @@ Homebrew Bundle complete! 7 Brewfile dependencies now installed.
 ```
 ### Build OS image
 
-OS Image build is a simple docker build via make, dockerfile: (`os/ubuntu/Dockerfile`)
+OS Image build is a simple docker build via make, dockerfile: (`./os/ubuntu/Dockerfile`)
 
 ```console
 $ make build-os  
-docker build --platform linux/x86_64  \
-                --build-arg TOOLKIT_REPO=ghcr.io/rancher/elemental-toolkit/elemental-cli \
-                --build-arg VERSION=v2.1.0-dev-ga2c4f0b3b \
-                --build-arg REPO=ghcr.io/felegy/elemental-ubuntu \
-                  -t ghcr.io/felegy/elemental-ubuntu:v0.0.1-gb47b71f \
-                 os/ubuntu
+docker build
+       --platform linux/x86_64  \
+       --build-arg TOOLKIT_REPO=ghcr.io/rancher/elemental-toolkit/elemental-cli \
+       --build-arg VERSION=v2.1.0-dev-ga2c4f0b3b \
+       --build-arg REPO=ghcr.io/felegy/elemental-ubuntu \
+       --tag ghcr.io/felegy/elemental-ubuntu:v0.0.1-gb47b71f \
+       os/ubuntu
 [+] Building 170.4s (21/21) FINISHED                              docker:default
  => [internal] load build definition from Dockerfile              0.1s
  => => transferring dockerfile: 2.82kB                            0.0s
@@ -137,7 +143,7 @@ total 943M
 
 ### Booting ISO
 
-In the step above your ISO file is a bootable UEFI iso image, ideal for a virtual machine (or any) installation purpose.
+In the above step your ISO file is a bootable UEFI iso image, ideal for a virtual machine (or any) installation purpose.
 
 Grub:
 
