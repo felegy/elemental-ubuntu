@@ -22,8 +22,10 @@ build-os:
 	$(DOCKER) build --platform $(PLATFORM) ${DOCKER_ARGS} \
 			--build-arg TOOLKIT_REPO=$(TOOLKIT_REPO) \
 			--build-arg TOOLKIT_VERSION=$(TOOLKIT_VERSION) \
-			--build-arg REPO=$(REPO) -t $(REPO):$(VERSION) \
+			--build-arg REPO=$(REPO) \
 			--build-arg VERSION=$(VERSION) \
+			--build-arg DEBS="$(DEBS)" \
+			--tag $(REPO):$(VERSION) \
 			$(BUILD_OPTS) os/$(FLAVOR)
 
 .PHONY: pull-toolkit
