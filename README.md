@@ -18,6 +18,12 @@ All dependencies in a DevContainer (`.devcontainer`) for devconatiner needed doc
 Clone this repo and open in vscode.
 
 ```console
+# via https
+$ git clone https://github.com/felegy/elemental-ubuntu.git
+Cloning into 'elemental-ubuntu'...
+... done.
+
+# or via ssh
 $ git clone ssh://git@ssh.github.com:443/felegy/elemental-ubuntu.git
 Cloning into 'elemental-ubuntu'...
 ... done.
