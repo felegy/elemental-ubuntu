@@ -1,6 +1,6 @@
 # elemental-ubuntu
 
-Ubuntu os derivative build via Rancher's [elemental-toolkit](https://github.com/rancher/elemental-toolkit)
+Ubuntu os derivative build via Rancher [elemental-toolkit](https://github.com/rancher/elemental-toolkit)
 
 ## Getting Started
 
