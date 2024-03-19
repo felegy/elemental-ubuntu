@@ -11,7 +11,7 @@ Getting started with Elemental
 
 ### Prerequisite
 
-All dependencies and tooling in a DevContainer (in `.devcontainer` directory). Basically docker is required and latest [vscode](https://code.visualstudio.com/docs/devcontainers/containers) or any developer IDE with devcontainer support is also needed: <https://www.augmentedmind.de/2022/10/30/container-based-development-envs/>
+All dependencies and tooling are in a DevContainer (`./.devcontainer` directory). Basically docker is required and latest [vscode](https://code.visualstudio.com/docs/devcontainers/containers) or any developer IDE with devcontainer support is also needed: <https://www.augmentedmind.de/2022/10/30/container-based-development-envs/>
 
 ### Open repo (`[Reopen in Container]`)
 
