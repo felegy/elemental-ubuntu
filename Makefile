@@ -21,8 +21,9 @@ VERSION?=$(GIT_TAG)-g$(GIT_COMMIT_SHORT)
 build-os:
 	$(DOCKER) build --platform $(PLATFORM) ${DOCKER_ARGS} \
 			--build-arg TOOLKIT_REPO=$(TOOLKIT_REPO) \
-			--build-arg VERSION=$(TOOLKIT_VERSION) \
+			--build-arg TOOLKIT_VERSION=$(TOOLKIT_VERSION) \
 			--build-arg REPO=$(REPO) -t $(REPO):$(VERSION) \
+			--build-arg VERSION=$(VERSION) \
 			$(BUILD_OPTS) os/$(FLAVOR)
 
 .PHONY: pull-toolkit
