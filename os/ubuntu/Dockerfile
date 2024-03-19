@@ -1,7 +1,7 @@
 # run `make build` to build local/elemental-toolkit image
 ARG TOOLKIT_REPO
-ARG VERSION
-FROM ${TOOLKIT_REPO}:${VERSION} as TOOLKIT
+ARG TOOLKIT_VERSION
+FROM ${TOOLKIT_REPO}:${TOOLKIT_VERSION} as TOOLKIT
 
 # OS base image of our choice
 FROM ubuntu:23.04 as OS
