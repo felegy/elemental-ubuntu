@@ -4,53 +4,53 @@ ARG TOOLKIT_VERSION
 FROM ${TOOLKIT_REPO}:${TOOLKIT_VERSION} as TOOLKIT
 
 # OS base image of our choice
-FROM ubuntu:23.04 as OS
+FROM ubuntu:23.04 as INSTALL
 ARG REPO
 ARG VERSION
 ENV VERSION=${VERSION}
-
+ARG DEBS
 # install kernel, systemd, dracut, grub2 and other required tools
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-  linux-generic \
-  dmsetup \
-  dracut-core \
-  dracut-network \
-  dracut-live \
-  dracut-squash \
-  grub2-common \
-  grub-efi-amd64 \
-  shim \
-  shim-signed \
-  haveged \
-  systemd \
-  systemd-sysv \
-  systemd-timesyncd \
-  systemd-resolved \
-  openssh-server \
-  tzdata \
-  parted \
-  e2fsprogs \
-  dosfstools \
-  qemu-guest-agent \
-  open-vm-tools \
-  mtools \
-  xorriso \
-  findutils \
-  gdisk \
-  rsync \
-  squashfs-tools \
-  lvm2 \
-  vim \
-  less \
-  sudo \
-  ca-certificates \
-  curl \
-  iproute2 \
-  dbus-daemon \
-  patch \
-  netplan.io \
-  locales \
-  xz-utils
+    linux-generic \
+    dmsetup \
+    dracut-core \
+    dracut-network \
+    dracut-live \
+    dracut-squash \
+    grub2-common \
+    grub-efi-amd64 \
+    shim \
+    shim-signed \
+    haveged \
+    systemd \
+    systemd-sysv \
+    systemd-timesyncd \
+    systemd-resolved \
+    openssh-server \
+    tzdata \
+    parted \
+    e2fsprogs \
+    dosfstools \
+    mtools \
+    xorriso \
+    findutils \
+    gdisk \
+    rsync \
+    squashfs-tools \
+    lvm2 \
+    vim \
+    less \
+    sudo \
+    ca-certificates \
+    curl \
+    iproute2 \
+    dbus-daemon \
+    patch \
+    netplan.io \
+    locales \
+    xz-utils \
+    podman \
+    ${DEBS}
 
 # Create non FHS paths
 RUN mkdir -p /oem /system
@@ -95,6 +95,10 @@ RUN mkdir -p /usr/lib/elemental/bootloader && \
     cp /usr/lib/grub/x86_64-efi-signed/gcdx64.efi.signed /usr/lib/elemental/bootloader/grubx64.efi && \
     cp /usr/lib/shim/shimx64.efi.signed.latest /usr/lib/elemental/bootloader/shimx64.efi && \
     cp /usr/lib/shim/mmx64.efi /usr/lib/elemental/bootloader/mmx64.efi
+
+FROM ubuntu:23.04 as OS
+
+COPY --from=INSTALL / /
 
 # Good for validation after the build
 CMD /bin/bash
