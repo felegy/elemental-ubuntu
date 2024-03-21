@@ -11,45 +11,46 @@ ENV VERSION=${VERSION}
 ARG DEBS
 # install kernel, systemd, dracut, grub2 and other required tools
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-  linux-generic \
-  dmsetup \
-  dracut-core \
-  dracut-network \
-  dracut-live \
-  dracut-squash \
-  grub2-common \
-  grub-efi-amd64 \
-  shim \
-  shim-signed \
-  haveged \
-  systemd \
-  systemd-sysv \
-  systemd-timesyncd \
-  systemd-resolved \
-  openssh-server \
-  tzdata \
-  parted \
-  e2fsprogs \
-  dosfstools \
-  mtools \
-  xorriso \
-  findutils \
-  gdisk \
-  rsync \
-  squashfs-tools \
-  lvm2 \
-  vim \
-  less \
-  sudo \
-  ca-certificates \
-  curl \
-  iproute2 \
-  dbus-daemon \
-  patch \
-  netplan.io \
-  locales \
-  xz-utils \
-  ${DEBS}
+    linux-generic \
+    dmsetup \
+    dracut-core \
+    dracut-network \
+    dracut-live \
+    dracut-squash \
+    grub2-common \
+    grub-efi-amd64 \
+    shim \
+    shim-signed \
+    haveged \
+    systemd \
+    systemd-sysv \
+    systemd-timesyncd \
+    systemd-resolved \
+    openssh-server \
+    tzdata \
+    parted \
+    e2fsprogs \
+    dosfstools \
+    mtools \
+    xorriso \
+    findutils \
+    gdisk \
+    rsync \
+    squashfs-tools \
+    lvm2 \
+    vim \
+    less \
+    sudo \
+    ca-certificates \
+    curl \
+    iproute2 \
+    dbus-daemon \
+    patch \
+    netplan.io \
+    locales \
+    xz-utils \
+    podman \
+    ${DEBS}
 
 # Create non FHS paths
 RUN mkdir -p /oem /system
