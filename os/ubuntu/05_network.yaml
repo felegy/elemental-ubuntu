@@ -1,32 +1,71 @@
 # Example network configuration for Ubuntu based systems
 name: "Default network configuration"
 stages:
-   initramfs:
-     - name: "Setup network"
-       files:
-       - path: /etc/netplan/elemental_setup.yaml
-         content: |
-           network:
-             version: 2
-             renderer: networkd
-             ethernets:
-               lan0:
-                 dhcp4: true
-         permissions: 0600
-         owner: 0
-         group: 0
-       - path: /etc/ssh/sshd_config.d/root_login.conf
-         content: |
-           PermitRootLogin yes
-         permissions: 0600
-         owner: 0
-         group: 0
-       - path: /etc/udev/rules.d/70-persistent-net.rules
-         content: |
-           SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="?*", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="?*", NAME="lan0"
-         permissions: 0600
-         owner: 0
-         group: 0
-       commands:
-         - ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
-         - netplan apply
+  initramfs:
+    - name: "Setup network"
+      files:
+      - path: /etc/netplan/elemental_setup.yaml
+        content: |
+          network:
+            version: 2
+            renderer: networkd
+            ethernets:
+              lan0:
+                dhcp4: true
+        permissions: 0600
+        owner: 0
+        group: 0
+      - path: /etc/ssh/sshd_config.d/root_login.conf
+        content: |
+          PermitRootLogin yes
+        permissions: 0600
+        owner: 0
+        group: 0
+      - path: /etc/udev/rules.d/70-persistent-net.rules
+        content: |
+          SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="?*", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="?*", NAME="lan0"
+        permissions: 0600
+        owner: 0
+        group: 0
+      commands:
+        - ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+        - netplan apply
+    - name: "Setup groups"
+      ensure_entities:
+      - entity: |
+          kind: "group"
+          group_name: "admin"
+          password: "x"
+          gid: 900
+    - name: "Setup users"
+      users:
+        # Replace the default user name here and settings
+        felegy:
+          # Comment passwd for no password
+          password: qwe4321
+          shell: /bin/bash
+          homedir: "/home/felegy"
+          groups:
+          - "admin"
+    - name: "Setup sudo"
+      files:
+      - path: "/etc/sudoers"
+        owner: 0
+        group: 0
+        permsisions: 0600
+        content: |
+          Defaults always_set_home
+          Defaults secure_path="/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin:/usr/local/sbin"
+          Defaults env_reset
+          Defaults env_keep = "LANG LC_ADDRESS LC_CTYPE LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE LC_ATIME LC_ALL LANGUAGE LINGUAS XDG_SESSION_COOKIE"
+          Defaults !insults
+          root ALL=(ALL) ALL
+          %admin ALL=(ALL) NOPASSWD: ALL
+          @includedir /etc/sudoers.d
+      commands:
+      - passwd -l root
+  network:
+  - authorized_keys:
+      # Replace here with your ssh keys or github handle
+      felegy:
+      - github:felegy
