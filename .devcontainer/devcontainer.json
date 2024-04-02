@@ -4,7 +4,15 @@
     "name": "DevOpsUbuntu",
     "userEnvProbe": "loginInteractiveShell",
     "image": "mcr.microsoft.com/vscode/devcontainers/base:0-ubuntu-22.04",
-    "runArgs": ["--privileged"],
+    "runArgs": [
+      "--privileged",
+      "--cap-add=SYS_PTRACE",
+      "--security-opt",
+      "seccomp=unconfined"
+    ],
+    "remoteUser": "vscode",
+    "containerUser": "vscode",
+    "updateRemoteUserUID": true,
     "mounts": ["source=brew,target=/home/linuxbrew,type=volume,consistency=cached"],
     "features": {
       "ghcr.io/meaningful-ooo/devcontainer-features/homebrew:2": {},

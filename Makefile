@@ -46,8 +46,8 @@ build-iso:
 	@echo Building $(ARCH) ISO
 	mkdir -p $(ROOT_DIR)/build
 	$(DOCKER) run --rm -v $(DOCKER_SOCK):$(DOCKER_SOCK) -v $(ROOT_DIR)/build:/build \
-		--entrypoint /usr/bin/elemental $(TOOLKIT_REPO):$(TOOLKIT_VERSION) --debug build-iso --bootloader-in-rootfs -n elemental-$(FLAVOR).$(ARCH) \
-		--local --platform $(PLATFORM) --squash-no-compression --config-dir=/build -o /build $(REPO):$(VERSION)
+		--entrypoint /usr/bin/elemental $(TOOLKIT_REPO):$(TOOLKIT_VERSION) --debug build-iso -n elemental-$(FLAVOR).$(ARCH) \
+		--local --platform $(PLATFORM) --config-dir=/build -o /build $(REPO):$(VERSION)
 
 .PHONY: build-disk
 build-disk:
@@ -56,7 +56,7 @@ build-disk:
 	$(DOCKER) run --rm -v $(DOCKER_SOCK):$(DOCKER_SOCK) -v $(ROOT_DIR)/build:/build \
 		--entrypoint /usr/bin/elemental \
 		$(TOOLKIT_REPO):$(TOOLKIT_VERSION) --debug build-disk --platform $(PLATFORM) --expandable -n elemental-$(FLAVOR).$(ARCH) --local \
-		--squash-no-compression --config-dir=/build -o /build --system $(REPO):$(VERSION)
+		--config-dir=/build -o /build --system $(REPO):$(VERSION)
 
 .PHONY: clean
 clean:
