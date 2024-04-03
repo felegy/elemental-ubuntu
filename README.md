@@ -44,19 +44,36 @@ And now run devcontainer, click on `[Reopen in Container]` button.
 The repo contains a Brewfile for easier tooling installation.
 
 ```console
-$ brew bundle install
+$ $ brew bundle install
 ==> Auto-updating Homebrew...
 Adjust how often this is run with HOMEBREW_AUTO_UPDATE_SECS or disable with
 HOMEBREW_NO_AUTO_UPDATE. Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
+==> Homebrew collects anonymous analytics.
+Read the analytics documentation (and how to opt-out) here:
+  https://docs.brew.sh/Analytics
+No analytics have been recorded yet (nor will be during this `brew` run).
+
+==> Homebrew is run entirely by unpaid volunteers. Please consider donating:
+  https://github.com/Homebrew/brew#donations
+
 Installing from the API is now the default behaviour!
 You can save space and time by running:
   brew untap homebrew/core
+==> Tapping homebrew/bundle
+Cloning into '/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/homebrew/homebrew-bundle'...
+remote: Enumerating objects: 7803, done.
+remote: Counting objects: 100% (1886/1886), done.
+remote: Compressing objects: 100% (260/260), done.
+remote: Total 7803 (delta 1712), reused 1704 (delta 1624), pack-reused 5917
+Receiving objects: 100% (7803/7803), 1.85 MiB | 12.69 MiB/s, done.
+Resolving deltas: 100% (4587/4587), done.
+Tapped 1 command (109 files, 2.4MB).
 Using homebrew/bundle
-Using editorconfig-checker
-Using shellcheck
-Using direnv
-Using yq
-Using jq
+Installing editorconfig-checker
+Installing shellcheck
+Installing direnv
+Installing yq
+Installing jq
 Using Command is only available in WSL or inside a Visual Studio Code terminal.
 Homebrew Bundle complete! 7 Brewfile dependencies now installed.
 ```
