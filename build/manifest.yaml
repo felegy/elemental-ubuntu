@@ -7,16 +7,16 @@ squash-no-compression: true
 disk:
   size: 32768
   partitions:
+    efi:
+      size: 128
     oem:
-      size: 32
+      size: 64
     state:
       size: 8192
     recovery:
-      size: 2048
+      size: 4096
     persistent:
       size: 0
       fs: xfs
   expandable: true
-  recovery-system:
-    fs: squashfs
   type: raw
