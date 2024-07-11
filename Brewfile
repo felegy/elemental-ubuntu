@@ -1,0 +1,8 @@
+brew "editorconfig-checker"
+brew "shellcheck"
+brew "direnv"
+#brew "qemu"
+brew "yq"
+brew "jq"
+brew "git"
+brew "gpg"
