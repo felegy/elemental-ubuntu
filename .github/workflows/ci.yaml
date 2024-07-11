@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch: #kezi inditas
+
+jobs:
+
+  check:
+    name: Check
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@master
+      - uses: editorconfig-checker/action-editorconfig-checker@main
+      - name: EditorConfig Check
+        run: editorconfig-checker
+      - name: Json / Yaml Validate
+        id: json-yaml-validate
+        uses: GrantBirki/json-yaml-validate@v2.4.0
+        with:
+          comment: "true"
+          allow_multiple_documents: "true"
+          exclude_file: ".jsonyamlex"
+      - name: ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: PS-Check
+        uses: SleepySysadmin/github-action-pscheck@master
