@@ -1,0 +1,11 @@
+stages:
+  fs:
+  - name: "Adding authorized SSH key"
+    authorized_keys:
+      root:
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKo5+VTohleIQSj412/k3q/B0KqpVXVJsjfJngBN3ZTn (none)"
+  install-after:
+  - if: '[ -e "/run/initramfs/live/iso-config/remote_login.yaml" ]'
+    name: "Adding authorized SSH key on install"
+    commands:
+    - cp /run/initramfs/live/iso-config/remote_login.yaml /run/elemental/oem

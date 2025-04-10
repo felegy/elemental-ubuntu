@@ -1,0 +1,6 @@
+stages:
+  network.before:
+  - name: "Setup SSH keys"
+    authorized_keys:
+      root:
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKo5+VTohleIQSj412/k3q/B0KqpVXVJsjfJngBN3ZTn (none)"
